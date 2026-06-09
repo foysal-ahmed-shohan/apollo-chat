@@ -21,7 +21,8 @@ from urllib.parse import quote
 import httpx
 
 API_KEY = os.environ.get("GEMINI_API_KEY", "").strip()
-MODEL = os.environ.get("NOVA_MODEL", "gemini-2.0-flash").strip()
+# read the standard GEMINI_MODEL (fall back to legacy NOVA_MODEL); default to 2.5-flash
+MODEL = (os.environ.get("GEMINI_MODEL") or os.environ.get("NOVA_MODEL") or "gemini-2.5-flash").strip()
 GEMINI_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 POLLI_URL = "https://text.pollinations.ai/openai"
 POLLI_GET = "https://text.pollinations.ai/"
